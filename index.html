@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dra. Florencia Chamorro - Medicina Integral & Estética</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --accent: #8e7f71;
+            --bg-soft: #fcfaf8;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--primary);
+            background-color: #fff;
+        }
+        h1, h2, h3, .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        .btn-dark {
+            background-color: var(--primary);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .btn-dark:hover {
+            background-color: #333;
+            transform: translateY(-2px);
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+        }
+        .pill-badge {
+            background: white;
+            border: 1px solid #e5e7eb;
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .service-tab.active {
+            background-color: #f3f4f6;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        .faq-item[open] summary i {
+            transform: rotate(45deg);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 glass-nav border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex flex-col leading-none">
+                    <span class="text-xl font-serif font-bold tracking-tight">Dra. Florencia Chamorro</span>
+                    <span class="text-[10px] uppercase tracking-[0.2em] text-gray-400 mt-1">Medicina Integral & Estética</span>
+                </div>
+                
+                <div class="hidden lg:flex space-x-10 text-xs font-medium uppercase tracking-widest text-gray-500">
+                    <a href="#servicios" class="hover:text-black transition-colors">Servicios</a>
+                    <a href="#sobre-mi" class="hover:text-black transition-colors">Sobre mí</a>
+                    <a href="#resultados" class="hover:text-black transition-colors">Resultados</a>
+                    <a href="#proceso" class="hover:text-black transition-colors">Proceso</a>
+                    <a href="#faq" class="hover:text-black transition-colors">Preguntas</a>
+                </div>
+
+                <a href="#contacto" class="btn-dark px-6 py-2.5 rounded-full text-xs font-semibold tracking-widest flex items-center gap-2">
+                    <i class="far fa-calendar"></i> RESERVAR TURNO
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-6 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12">
+            <div class="lg:w-1/2 space-y-8">
+                <div class="flex items-center gap-3">
+                    <span class="pill-badge">● Médica Certificada · CABA</span>
+                </div>
+                <h1 class="text-5xl lg:text-7xl leading-[1.1] text-gray-900">
+                    Tu salud <span class="italic font-normal">integral</span>, con resultados que se notan.
+                </h1>
+                <p class="text-lg text-gray-500 font-light max-w-lg leading-relaxed">
+                    Medicina estética y funcional con enfoque personalizado. Tratamos la causa, no solo lo visible.
+                </p>
+                <div class="flex flex-wrap gap-4 pt-4">
+                    <div class="flex gap-2">
+                        <span class="px-3 py-1 bg-gray-50 rounded-md text-[11px] font-medium border border-gray-100">Estética Facial</span>
+                        <span class="px-3 py-1 bg-gray-50 rounded-md text-[11px] font-medium border border-gray-100">Medicina Funcional</span>
+                        <span class="px-3 py-1 bg-gray-50 rounded-md text-[11px] font-medium border border-gray-100">Ortomolecular</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-6 pt-6">
+                    <button class="btn-dark px-10 py-4 rounded-full text-sm font-semibold">Reservar turno</button>
+                    <a href="#servicios" class="text-sm font-semibold border-b border-black pb-1 hover:text-gray-500 transition-colors">Ver servicios</a>
+                </div>
+                
+                <div class="grid grid-cols-3 gap-8 pt-12 border-t border-gray-50">
+                    <div>
+                        <span class="block text-2xl font-serif">10+</span>
+                        <span class="text-[10px] uppercase text-gray-400 tracking-tighter">Años de experiencia</span>
+                    </div>
+                    <div>
+                        <span class="block text-2xl font-serif">100+</span>
+                        <span class="text-[10px] uppercase text-gray-400 tracking-tighter">Certificados</span>
+                    </div>
+                    <div>
+                        <span class="block text-2xl font-serif">2</span>
+                        <span class="text-[10px] uppercase text-gray-400 tracking-tighter">Sedes en CABA</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="lg:w-1/2 relative">
+                <div class="relative rounded-[40px] overflow-hidden shadow-2xl rotate-2">
+                    <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=800" alt="Dra. en tratamiento" class="w-full object-cover">
+                </div>
+                <!-- Floating Card -->
+                <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl max-w-[240px] -rotate-3 border border-gray-100">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 bg-green-50 rounded-full flex items-center justify-center">
+                            <i class="fas fa-heartbeat text-green-500"></i>
+                        </div>
+                        <span class="text-xs font-bold uppercase tracking-widest">Enfoque Integral</span>
+                    </div>
+                    <p class="text-[11px] text-gray-400">Salud y estética en un solo concepto médico.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Sobre Mí -->
+    <section id="sobre-mi" class="py-24 bg-white px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-16 items-center">
+            <div class="md:w-1/3">
+                <img src="https://images.unsplash.com/photo-1559839734-2b71f1536783?auto=format&fit=crop&q=80&w=600" alt="Dra. Florencia" class="rounded-3xl shadow-lg">
+            </div>
+            <div class="md:w-2/3 space-y-6">
+                <span class="text-[10px] uppercase tracking-[0.3em] text-gray-400">Sobre la doctora</span>
+                <h2 class="text-4xl md:text-5xl leading-tight">Una médica que <span class="italic font-normal">escucha de verdad</span></h2>
+                <p class="text-gray-500 font-light text-lg leading-relaxed">
+                    La Dra. Florencia Chamorro es médica de familia con profunda formación en medicina estética, funcional y ortomolecular. Más allá de los procedimientos, su enfoque es entenderte como persona: tu historia, tu cuerpo, tus objetivos.
+                </p>
+                <div class="space-y-4 pt-4">
+                    <div class="flex items-start gap-4">
+                        <i class="fas fa-check-circle text-gray-300 mt-1"></i>
+                        <p class="text-sm text-gray-600">Especialista en medicina estética de alta gama.</p>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <i class="fas fa-check-circle text-gray-300 mt-1"></i>
+                        <p class="text-sm text-gray-600">Diplomado en medicina funcional y ortomolecular.</p>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <i class="fas fa-check-circle text-gray-300 mt-1"></i>
+                        <p class="text-sm text-gray-600">Miembro de sociedades médicas internacionales.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pilares -->
+    <section class="py-24 bg-[#fcfaf8] px-6">
+        <div class="max-w-7xl mx-auto text-center mb-16">
+            <span class="text-[10px] uppercase tracking-[0.3em] text-gray-400 mb-4 block">Nuestro Enfoque</span>
+            <h2 class="text-4xl md:text-5xl mb-6">Tratamos la causa, no solo lo visible</h2>
+            <p class="text-gray-500 max-w-2xl mx-auto font-light">La medicina integral entiende que la salud es un sistema. Cada pilar que trabajamos influye en los demás.</p>
+        </div>
+
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Pilar 1 -->
+            <div class="bg-white p-10 rounded-[32px] border border-gray-100 hover:shadow-xl transition-all group">
+                <div class="w-14 h-14 bg-gray-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-black group-hover:text-white transition-colors">
+                    <i class="fas fa-microscope text-xl"></i>
+                </div>
+                <h3 class="text-xl mb-4">Estética con criterio médico</h3>
+                <p class="text-sm text-gray-400 font-light leading-relaxed">Cada procedimiento está respaldado por formación médica para resultados naturales.</p>
+            </div>
+            <!-- Pilar 2 -->
+            <div class="bg-white p-10 rounded-[32px] border border-gray-100 hover:shadow-xl transition-all group">
+                <div class="w-14 h-14 bg-gray-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-black group-hover:text-white transition-colors">
+                    <i class="fas fa-leaf text-xl"></i>
+                </div>
+                <h3 class="text-xl mb-4">Medicina Funcional</h3>
+                <p class="text-sm text-gray-400 font-light leading-relaxed">Analizamos cómo funciona tu organismo para identificar causas de base.</p>
+            </div>
+            <!-- Pilar 3 -->
+            <div class="bg-white p-10 rounded-[32px] border border-gray-100 hover:shadow-xl transition-all group">
+                <div class="w-14 h-14 bg-gray-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-black group-hover:text-white transition-colors">
+                    <i class="fas fa-vials text-xl"></i>
+                </div>
+                <h3 class="text-xl mb-4">Ortomolecular</h3>
+                <p class="text-sm text-gray-400 font-light leading-relaxed">Optimizamos tus nutrientes y vitaminas para que tu cuerpo funcione en equilibrio.</p>
+            </div>
+            <!-- Pilar 4 -->
+            <div class="bg-white p-10 rounded-[32px] border border-gray-100 hover:shadow-xl transition-all group">
+                <div class="w-14 h-14 bg-gray-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-black group-hover:text-white transition-colors">
+                    <i class="fas fa-apple-alt text-xl"></i>
+                </div>
+                <h3 class="text-xl mb-4">Alimentación</h3>
+                <p class="text-sm text-gray-400 font-light leading-relaxed">La nutrición es la base de todo proceso regenerativo y bienestar real.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tratamientos / Servicios Tabs -->
+    <section id="servicios" class="py-24 bg-white px-6">
+        <div class="max-w-7xl mx-auto text-center mb-12">
+            <span class="text-[10px] uppercase tracking-[0.3em] text-gray-400 mb-4 block">Servicios</span>
+            <h2 class="text-4xl mb-8">Tratamientos</h2>
+            
+            <div class="flex flex-wrap justify-center gap-2 mb-12">
+                <button onclick="switchTab('facial')" class="service-tab active px-8 py-3 rounded-full text-xs font-medium border border-gray-100 transition-all">Facial</button>
+                <button onclick="switchTab('capilar')" class="service-tab px-8 py-3 rounded-full text-xs font-medium border border-gray-100 transition-all">Capilar</button>
+                <button onclick="switchTab('corporal')" class="service-tab px-8 py-3 rounded-full text-xs font-medium border border-gray-100 transition-all">Corporal</button>
+                <button onclick="switchTab('integral')" class="service-tab px-8 py-3 rounded-full text-xs font-medium border border-gray-100 transition-all">Medicina Integral</button>
+            </div>
+        </div>
+
+        <div id="service-grid" class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Los items se cargan dinámicamente con JS -->
+        </div>
+        
+        <div class="text-center mt-12">
+            <p class="text-gray-400 text-sm italic mb-6">¿Tenés dudas sobre qué tratamiento es el indicado para vos?</p>
+            <button class="btn-dark px-10 py-4 rounded-full text-sm font-semibold inline-flex items-center gap-3">
+                <i class="fab fa-whatsapp"></i> Consulta por WhatsApp
+            </button>
+        </div>
+    </section>
+
+    <!-- Resultados -->
+    <section id="resultados" class="py-24 bg-[#fcfaf8] px-6">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl text-center mb-16">Resultados que hablan</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&q=80&w=400" class="rounded-2xl aspect-square object-cover" alt="Resultado">
+                <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&q=80&w=400" class="rounded-2xl aspect-square object-cover" alt="Resultado">
+                <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&q=80&w=400" class="rounded-2xl aspect-square object-cover" alt="Resultado">
+                <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&q=80&w=400" class="rounded-2xl aspect-square object-cover" alt="Resultado">
+            </div>
+        </div>
+    </section>
+
+    <!-- Proceso -->
+    <section id="proceso" class="py-24 bg-white px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-[10px] uppercase tracking-[0.3em] text-gray-400 mb-4 block">¿Cómo funciona?</span>
+                <h2 class="text-4xl md:text-5xl">Tu proceso, paso a paso</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="relative group">
+                    <span class="text-8xl font-serif text-gray-50 absolute -top-8 -left-4 z-0 group-hover:text-gray-100 transition-colors">01</span>
+                    <div class="relative z-10 pt-4">
+                        <h4 class="text-xl mb-3 font-semibold">Primera consulta</h4>
+                        <p class="text-sm text-gray-500 font-light leading-relaxed">Conversamos sobre tu historia clínica y objetivos. Sin presiones, te escuchamos.</p>
+                    </div>
+                </div>
+                <div class="relative group">
+                    <span class="text-8xl font-serif text-gray-50 absolute -top-8 -left-4 z-0 group-hover:text-gray-100 transition-colors">02</span>
+                    <div class="relative z-10 pt-4">
+                        <h4 class="text-xl mb-3 font-semibold">Diagnóstico integral</h4>
+                        <p class="text-sm text-gray-500 font-light leading-relaxed">Evaluamos tu salud con análisis clínicos para entender tu estado real.</p>
+                    </div>
+                </div>
+                <div class="relative group">
+                    <span class="text-8xl font-serif text-gray-50 absolute -top-8 -left-4 z-0 group-hover:text-gray-100 transition-colors">03</span>
+                    <div class="relative z-10 pt-4">
+                        <h4 class="text-xl mb-3 font-semibold">Plan personalizado</h4>
+                        <p class="text-sm text-gray-500 font-light leading-relaxed">Diseñamos un protocolo único que combina estética y bienestar.</p>
+                    </div>
+                </div>
+                <div class="relative group">
+                    <span class="text-8xl font-serif text-gray-50 absolute -top-8 -left-4 z-0 group-hover:text-gray-100 transition-colors">04</span>
+                    <div class="relative z-10 pt-4">
+                        <h4 class="text-xl mb-3 font-semibold">Seguimiento</h4>
+                        <p class="text-sm text-gray-500 font-light leading-relaxed">Te acompañamos en cada etapa para asegurar resultados duraderos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-24 bg-[#fcfaf8] px-6">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-3xl text-center mb-12">Todo lo que querías saber</h2>
+            <div class="space-y-4">
+                <details class="faq-item group bg-white rounded-2xl border border-gray-100">
+                    <summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+                        <span class="font-medium">¿Las sesiones son dolorosas?</span>
+                        <i class="fas fa-plus text-xs transition-transform"></i>
+                    </summary>
+                    <div class="px-6 pb-6 text-sm text-gray-500 leading-relaxed">
+                        La mayoría de nuestros tratamientos son mínimamente invasivos y muy bien tolerados. Utilizamos técnicas avanzadas para minimizar cualquier molestia.
+                    </div>
+                </details>
+                <details class="faq-item group bg-white rounded-2xl border border-gray-100">
+                    <summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+                        <span class="font-medium">¿Cuánto duran los resultados?</span>
+                        <i class="fas fa-plus text-xs transition-transform"></i>
+                    </summary>
+                    <div class="px-6 pb-6 text-sm text-gray-500 leading-relaxed">
+                        Depende del tratamiento específico y de los hábitos de cada paciente, pero nuestros protocolos están diseñados para una mejora progresiva y duradera.
+                    </div>
+                </details>
+                <details class="faq-item group bg-white rounded-2xl border border-gray-100">
+                    <summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+                        <span class="font-medium">¿Son seguros los procedimientos?</span>
+                        <i class="fas fa-plus text-xs transition-transform"></i>
+                    </summary>
+                    <div class="px-6 pb-6 text-sm text-gray-500 leading-relaxed">
+                        Absolutamente. Todos los procedimientos son realizados por una médica matriculada con productos aprobados por entes regulatorios.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="py-24 bg-[#8e7f71] text-white text-center px-6">
+        <div class="max-w-2xl mx-auto space-y-8">
+            <h2 class="text-5xl leading-tight">Empezá tu camino hacia el bienestar</h2>
+            <p class="text-white/70 font-light">Reserva tu primera consulta y descubrí cómo la medicina integral puede transformar tu salud.</p>
+            <button class="bg-white text-black px-10 py-4 rounded-full text-sm font-bold tracking-widest hover:bg-gray-100 transition-colors">
+                RESERVAR TURNO POR WHATSAPP
+            </button>
+            <p class="text-[10px] uppercase tracking-widest text-white/40">Respondemos en menos de 24 hs hábiles</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white py-20 px-6 border-t border-gray-100">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+            <div class="col-span-1 md:col-span-1">
+                <div class="flex flex-col mb-6">
+                    <span class="text-xl font-serif font-bold">Dra. Florencia Chamorro</span>
+                    <span class="text-[10px] uppercase tracking-widest text-gray-400">Matrícula 123456</span>
+                </div>
+                <p class="text-sm text-gray-400 font-light leading-relaxed">Medicina estética y funcional con un enfoque integral en CABA.</p>
+            </div>
+            <div>
+                <h5 class="text-xs font-bold uppercase tracking-widest mb-6">Navegación</h5>
+                <ul class="text-sm text-gray-500 space-y-4">
+                    <li><a href="#inicio" class="hover:text-black">Inicio</a></li>
+                    <li><a href="#sobre-mi" class="hover:text-black">Sobre mí</a></li>
+                    <li><a href="#servicios" class="hover:text-black">Servicios</a></li>
+                    <li><a href="#proceso" class="hover:text-black">Proceso</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-xs font-bold uppercase tracking-widest mb-6">Servicios</h5>
+                <ul class="text-sm text-gray-500 space-y-4">
+                    <li><a href="#" class="hover:text-black">Toxina Botulínica</a></li>
+                    <li><a href="#" class="hover:text-black">Ácido Hialurónico</a></li>
+                    <li><a href="#" class="hover:text-black">Medicina Funcional</a></li>
+                    <li><a href="#" class="hover:text-black">Plasma Rico en Plaquetas</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-xs font-bold uppercase tracking-widest mb-6">Contacto</h5>
+                <ul class="text-sm text-gray-500 space-y-4">
+                    <li class="flex items-center gap-3"><i class="fas fa-map-marker-alt text-gray-300"></i> Palermo / Villa Urquiza</li>
+                    <li class="flex items-center gap-3"><i class="fas fa-phone text-gray-300"></i> +54 9 11 1234 5678</li>
+                    <li class="flex items-center gap-3"><i class="fab fa-instagram text-gray-300"></i> @draflorenciachamorro</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón Flotante WhatsApp -->
+    <a href="#" class="fixed bottom-8 right-8 bg-[#25D366] text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-2xl hover:scale-110 transition-transform z-50">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        const servicesData = {
+            facial: [
+                { title: 'Toxina botulínica', desc: 'Tratamiento de arrugas de expresión con resultados naturales.' },
+                { title: 'Ácido hialurónico', desc: 'Recuperación de volumen, definición y relleno.' },
+                { title: 'Bioestimuladores', desc: 'Activación de colágeno natural para firmeza.' },
+                { title: 'Peeling Médico', desc: 'Renovación celular profunda y luminosidad.' },
+                { title: 'Mesoterapia Facial', desc: 'Nutrición intensa con vitaminas y minerales.' },
+                { title: 'Skinboosters', desc: 'Hidratación profunda desde las capas internas.' }
+            ],
+            capilar: [
+                { title: 'Alopecia', desc: 'Diagnóstico médico y tratamiento personalizado.' },
+                { title: 'Mesoterapia capilar', desc: 'Microinyecciones de nutrientes en el cuero cabelludo.' }
+            ],
+            corporal: [
+                { title: 'Depilación Láser', desc: 'Tecnología médica definitiva para todo tipo de piel.' },
+                { title: 'Tratamiento Reductor', desc: 'Enfoque médico para adiposidad localizada.' }
+            ],
+            integral: [
+                { title: 'Medicina Funcional', desc: 'Estudio del organismo como un sistema integrado.' },
+                { title: 'Laboratorio de Avanzada', desc: 'Análisis profundo de hormonas y metabolismo.' },
+                { title: 'Nutrición Antiinflamatoria', desc: 'Plan alimenticio para salud celular.' },
+                { title: 'Sueroterapia', desc: 'Administración IV de nutrientes de alta biodisponibilidad.' }
+            ]
+        };
+
+        function switchTab(tab) {
+            // Update buttons visually
+            const buttons = document.querySelectorAll('.service-tab');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+                // Check if the button was clicked or matches the tab id
+                if (btn.getAttribute('onclick').includes(`'${tab}'`)) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Update grid content
+            const grid = document.getElementById('service-grid');
+            if (!grid) return;
+            
+            grid.innerHTML = '';
+            
+            if (servicesData[tab]) {
+                servicesData[tab].forEach(item => {
+                    const card = `
+                        <div class="bg-white p-8 rounded-3xl border border-gray-100 hover:border-black transition-all cursor-pointer group">
+                            <div class="flex justify-between items-start mb-6">
+                                <div class="w-10 h-10 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-black group-hover:text-white transition-colors">
+                                    <i class="fas fa-sparkles text-xs"></i>
+                                </div>
+                                <i class="fas fa-arrow-right text-[10px] text-gray-200 group-hover:text-black transition-colors"></i>
+                            </div>
+                            <h4 class="text-lg font-medium mb-2">${item.title}</h4>
+                            <p class="text-sm text-gray-400 font-light leading-relaxed">${item.desc}</p>
+                        </div>
+                    `;
+                    grid.innerHTML += card;
+                });
+            }
+        }
+
+        // Initialize safely
+        window.addEventListener('DOMContentLoaded', () => {
+            switchTab('facial');
+        });
+
+        // Smooth scroll for anchors
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const target = document.querySelector(targetId);
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
