@@ -246,7 +246,24 @@
             </div>
         </div>
     </section>
+    <!-- 2. SECCIÓN: CATÁLOGO COMPLETO (Lo que tiene las pestañas y botones) -->
+    <section id="servicios" class="py-24 bg-[#fcfaf8] px-6 text-center">
+        <div class="max-w-7xl mx-auto mb-12">
+            <span class="text-[10px] uppercase tracking-[0.3em] text-gray-400 mb-4 block">Explorá más</span>
+            <h2 class="text-4xl mb-8 font-serif">Catálogo de Tratamientos</h2>
+            
+            <div class="flex flex-wrap justify-center gap-2 mb-12">
+                <button onclick="switchTab('facial')" class="service-tab active px-8 py-3 rounded-full text-xs font-medium border border-gray-100">Facial</button>
+                <button onclick="switchTab('capilar')" class="service-tab px-8 py-3 rounded-full text-xs font-medium border border-gray-100">Capilar</button>
+                <button onclick="switchTab('corporal')" class="service-tab px-8 py-3 rounded-full text-xs font-medium border border-gray-100">Corporal</button>
+                <button onclick="switchTab('integral')" class="service-tab px-8 py-3 rounded-full text-xs font-medium border border-gray-100">Medicina Integral</button>
+            </div>
+        </div>
 
+        <!-- Aquí es donde tu JavaScript carga el resto de los tratamientos -->
+        <div id="service-grid" class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
+        </div>
+    </section>
     <!-- Resultados Visuales -->
     <section id="resultados" class="py-24 bg-[#fcfaf8] px-6 text-center">
         <div class="max-w-7xl mx-auto">
