@@ -8,224 +8,434 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #1a1a1a; --accent: #8e7f71; }
-        body { font-family: 'Inter', sans-serif; color: var(--primary); scroll-behavior: smooth; }
+        :root { 
+            --primary: #1a1a1a; 
+            --accent: #8e7f71; 
+            --soft-bg: #fcfaf8; 
+            --whatsapp: #25D366; 
+        }
+        body { font-family: 'Inter', sans-serif; color: var(--primary); scroll-behavior: smooth; background-color: #fff; }
         h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
-        .glass-nav { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); }
+        
+        .glass-nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); }
+        
+        .bg-accent { background-color: var(--accent); }
+        .text-accent { color: var(--accent); }
+        .border-accent { border-color: var(--accent); }
+        
         .btn-dark { background-color: var(--primary); color: white; transition: all 0.3s ease; }
-        .service-tab.active { background-color: #f3f4f6; color: black; font-weight: 600; border-color: black; }
-        .pill-badge { border: 1px solid #e5e7eb; padding: 4px 12px; border-radius: 999px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
-        .faq-item[open] summary i { transform: rotate(45deg); }
+        .btn-dark:hover { background-color: #333; transform: translateY(-2px); }
+        
+        .service-tab.active { background-color: var(--accent) !important; color: white !important; border-color: var(--accent) !important; }
+        
+        .pill-badge { border: 1px solid #e5e7eb; padding: 4px 10px; border-radius: 999px; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; color: #666; }
+        
+        /* Burbuja WhatsApp */
+        .whatsapp-bubble {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: var(--whatsapp);
+            color: white;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        .whatsapp-bubble:hover { transform: scale(1.1); }
+
+        #serviceModal { display: none; opacity: 0; transition: opacity 0.3s ease; }
+        #serviceModal.active { display: flex; opacity: 1; }
+        
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
     </style>
 </head>
-<body>
+<body class="antialiased">
+
+    <!-- WhatsApp -->
+    <a href="https://wa.me/5491139551237" target="_blank" class="whatsapp-bubble">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     <!-- Navegación -->
     <nav class="fixed w-full z-50 glass-nav border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-6 flex justify-between h-20 items-center">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between h-16 items-center">
             <div class="flex flex-col">
-                <span class="text-xl font-serif font-bold">Dra. Florencia Chamorro</span>
-                <span class="text-[10px] uppercase tracking-widest text-gray-400">Medicina Integral & Estética</span>
+                <span class="text-lg font-serif font-bold tracking-tight text-gray-900 leading-none">Dra. Florencia Chamorro</span>
+                <span class="text-[8px] uppercase tracking-[0.3em] text-gray-400 mt-1">Medicina Integral & Estética</span>
             </div>
-            <div class="hidden lg:flex space-x-8 text-[11px] font-medium uppercase tracking-widest text-gray-500">
-                <a href="#servicios" class="hover:text-black">Servicios</a>
-                <a href="#sobre-mi" class="hover:text-black">Sobre mí</a>
-                <a href="#resultados" class="hover:text-black">Resultados</a>
-                <a href="#proceso" class="hover:text-black">Proceso</a>
-                <a href="#faq" class="hover:text-black">Preguntas</a>
+            <div class="hidden lg:flex space-x-8 text-[9px] font-bold uppercase tracking-widest text-gray-400">
+                <a href="#servicios" class="hover:text-black transition-colors">Servicios</a>
+                <a href="#sobre-mi" class="hover:text-black transition-colors">Sobre Mí</a>
+                <a href="#resultados" class="hover:text-black transition-colors">Resultados</a>
+                <a href="#faq" class="hover:text-black transition-colors">Preguntas</a>
             </div>
-            <a href="https://wa.me/5491139551237" class="btn-dark px-6 py-2 rounded-full text-[11px] font-bold tracking-widest">RESERVAR TURNO</a>
+            <a href="https://wa.me/5491139551237" class="btn-dark px-5 py-2 rounded-lg text-[9px] font-bold tracking-widest hover:brightness-90 transition-all uppercase flex items-center gap-2">
+                <i class="far fa-calendar-alt"></i> Reservar Turno
+            </a>
         </div>
     </nav>
 
-    <!-- Hero con Contadores -->
-    <section class="pt-40 pb-20 px-6 bg-white overflow-hidden">
-        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
-            <div class="lg:w-1/2 space-y-8 text-left">
-                <span class="pill-badge">● Médica Certificada · CABA</span>
-                <h1 class="text-6xl lg:text-7xl leading-tight">Tu salud <span class="italic font-normal">integral</span>, con resultados reales.</h1>
-                <p class="text-lg text-gray-500 font-light max-w-lg leading-relaxed">Medicina estética y funcional con enfoque personalizado para lograr una belleza natural y duradera.</p>
-                <div class="flex gap-6 pt-4">
-                    <a href="https://wa.me/5491139551237" class="btn-dark px-10 py-4 rounded-full text-sm font-semibold shadow-lg">Reservar turno</a>
-                    <a href="#servicios" class="text-sm font-semibold border-b border-black pb-1">Ver servicios</a>
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            
+            <!-- Contenido Izquierdo -->
+            <div class="space-y-8 text-left order-2 lg:order-1">
+                <div class="flex items-center gap-2">
+                    <span class="pill-badge bg-gray-50">● Médica Certificada · CABA</span>
                 </div>
-                <div class="grid grid-cols-3 gap-8 pt-12 border-t border-gray-100">
-                    <div><span class="block text-2xl font-serif">10+</span><span class="text-[10px] uppercase text-gray-400">Años Experiencia</span></div>
-                    <div><span class="block text-2xl font-serif">25+</span><span class="text-[10px] uppercase text-gray-400">Certificados</span></div>
-                    <div><span class="block text-2xl font-serif">1</span><span class="text-[10px] uppercase text-gray-400">Sede CABA</span></div>
+                
+                <h1 class="text-5xl lg:text-7xl leading-[1.1] text-gray-900 tracking-tight">
+                    Tu salud <span class="italic font-normal">integral</span>, con resultados que se notan.
+                </h1>
+                
+                <p class="text-base text-gray-500 font-light max-w-md leading-relaxed">
+                    La Dra. Florencia Chamorro integra la medicina funcional con protocolos estéticos de vanguardia para tratar la salud desde su origen celular.
+                </p>
+                
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 bg-gray-50 rounded text-[10px] font-medium text-gray-400 border border-gray-100 uppercase tracking-tighter">Estética Facial</span>
+                    <span class="px-3 py-1 bg-gray-50 rounded text-[10px] font-medium text-gray-400 border border-gray-100 uppercase tracking-tighter">Medicina Funcional</span>
+                    <span class="px-3 py-1 bg-gray-50 rounded text-[10px] font-medium text-gray-400 border border-gray-100 uppercase tracking-tighter">Ortomolecular</span>
+                </div>
+
+                <div class="flex items-center gap-6 pt-4">
+                    <a href="https://wa.me/5491139551237" target="_blank" class="btn-dark px-10 py-4 rounded-full text-xs font-bold tracking-widest shadow-xl">RESERVAR TURNO</a>
+                    <a href="#servicios" class="text-xs font-bold border-b border-black pb-1 hover:text-accent transition-colors uppercase tracking-widest">Ver servicios</a>
+                </div>
+
+                <!-- Stats -->
+                <div class="grid grid-cols-3 gap-8 pt-10 border-t border-gray-100 max-w-sm">
+                    <div>
+                        <span class="block text-2xl font-serif">10+</span>
+                        <span class="text-[8px] uppercase text-gray-400 font-bold tracking-widest">Años de experiencia</span>
+                    </div>
+                    <div>
+                        <span class="block text-2xl font-serif">25+</span>
+                        <span class="text-[8px] uppercase text-gray-400 font-bold tracking-widest">Certificados</span>
+                    </div>
+                    <div>
+                        <span class="block text-2xl font-serif">1</span>
+                        <span class="text-[8px] uppercase text-gray-400 font-bold tracking-widest">Sede en CABA</span>
+                    </div>
                 </div>
             </div>
-            <div class="lg:w-1/2">
-                <div class="rounded-[40px] overflow-hidden shadow-2xl rotate-2 aspect-[4/5] bg-gray-50">
-                    <img src="doctora.jpg" alt="Dra. Florencia Chamorro" class="w-full h-full object-cover">
+
+            <!-- Foto Derecha (Rectángulo con bordes redondeados) -->
+            <div class="relative order-1 lg:order-2 flex justify-center lg:justify-end">
+                <div class="relative w-full max-w-[500px] aspect-[4/5] rounded-[60px] overflow-hidden shadow-2xl bg-gray-100">
+                    <img src="doctora.jpg" alt="Dra. Florencia Chamorro" class="w-full h-full object-cover object-center scale-105 transition-transform duration-1000 hover:scale-100">
+                </div>
+                
+                <!-- Tarjeta Flotante sobre la imagen -->
+                <div class="absolute bottom-10 -left-6 lg:-left-12 bg-white p-6 rounded-[32px] shadow-2xl border border-gray-50 max-w-[240px] z-20">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 bg-green-50 rounded-full flex items-center justify-center text-green-500">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-gray-900">Enfoque Integral</span>
+                    </div>
+                    <p class="text-[11px] text-gray-400 leading-relaxed font-light italic">Salud y estética en un solo concepto médico diseñado para tu bienestar.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Pilares -->
-    <section class="py-24 bg-[#fcfaf8] px-6">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div class="bg-white p-10 rounded-[32px] border border-gray-100 group hover:shadow-xl transition-all">
-                <div class="w-14 h-14 bg-gray-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-black group-hover:text-white transition-colors"><i class="fas fa-microscope"></i></div>
-                <h3 class="text-xl mb-4 font-serif">Estética Médica</h3>
-                <p class="text-sm text-gray-400 font-light">Procedimientos seguros con formación médica rigurosa.</p>
+    <!-- Sobre la Labor -->
+    <section id="sobre-mi" class="py-24 bg-[#fcfaf8] px-6 border-y border-gray-100">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row gap-16 items-center">
+            <div class="md:w-1/3">
+                <img src="doctora.jpg" alt="Dra. Florencia Chamorro" class="rounded-[40px] shadow-xl w-full aspect-square object-cover object-top border-4 border-white rotate-2">
             </div>
-            <div class="bg-white p-10 rounded-[32px] border border-gray-100 group hover:shadow-xl transition-all">
-                <div class="w-14 h-14 bg-gray-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-black group-hover:text-white transition-colors"><i class="fas fa-leaf"></i></div>
-                <h3 class="text-xl mb-4 font-serif">Funcional</h3>
-                <p class="text-sm text-gray-400 font-light">Tratamos la causa de base biológica de tu organismo.</p>
-            </div>
-            <div class="bg-white p-10 rounded-[32px] border border-gray-100 group hover:shadow-xl transition-all">
-                <div class="w-14 h-14 bg-gray-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-black group-hover:text-white transition-colors"><i class="fas fa-vials"></i></div>
-                <h3 class="text-xl mb-4 font-serif">Ortomolecular</h3>
-                <p class="text-sm text-gray-400 font-light">Optimizamos tus niveles de nutrientes y vitaminas.</p>
-            </div>
-            <div class="bg-white p-10 rounded-[32px] border border-gray-100 group hover:shadow-xl transition-all">
-                <div class="w-14 h-14 bg-gray-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-black group-hover:text-white transition-colors"><i class="fas fa-apple-alt"></i></div>
-                <h3 class="text-xl mb-4 font-serif">Alimentación</h3>
-                <p class="text-sm text-gray-400 font-light">Nutrición antiinflamatoria como pilar de salud.</p>
+            <div class="md:w-2/3 text-left space-y-5">
+                <span class="text-[9px] uppercase tracking-[0.4em] text-accent font-bold">Trayectoria Médica</span>
+                <h2 class="text-3xl font-serif italic text-gray-900 leading-tight">Medicina que escucha y actúa desde la raíz</h2>
+                <p class="text-gray-600 font-light text-base leading-relaxed">
+                    La Dra. Florencia Chamorro ejerce la medicina de familia con un enfoque especializado en medicina funcional y ortomolecular. Su práctica clínica se orienta a identificar las causas de los desequilibrios biológicos, permitiendo que cada tratamiento estético esté respaldado por una base metabólica sólida y saludable.
+                </p>
+                <div class="flex flex-wrap gap-4 pt-2">
+                    <div class="flex items-center gap-3 bg-white px-5 py-3 rounded-2xl border border-gray-100 shadow-sm">
+                        <i class="fas fa-certificate text-accent text-sm"></i>
+                        <span class="text-[10px] font-bold uppercase tracking-widest">Estética con Criterio Médico</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Catálogo de Tratamientos -->
-    <section id="servicios" class="py-24 bg-white px-6 text-center">
-        <div class="max-w-7xl mx-auto mb-12">
-            <h2 class="text-4xl mb-12 font-serif italic">Tratamientos destacados</h2>
-            <div class="flex flex-wrap justify-center gap-2 mb-12">
-                <button onclick="switchTab('facial', this)" class="service-tab active px-8 py-3 rounded-full text-xs font-medium border border-gray-100">Facial</button>
-                <button onclick="switchTab('capilar', this)" class="service-tab px-8 py-3 rounded-full text-xs font-medium border border-gray-100">Capilar</button>
-                <button onclick="switchTab('corporal', this)" class="service-tab px-8 py-3 rounded-full text-xs font-medium border border-gray-100">Corporal</button>
-                <button onclick="switchTab('integral', this)" class="service-tab px-8 py-3 rounded-full text-xs font-medium border border-gray-100">Medicina Integral</button>
+    <!-- Catálogo -->
+    <section id="servicios" class="py-20 bg-white px-6 text-center">
+        <div class="max-w-7xl mx-auto mb-10">
+            <h2 class="text-3xl font-serif italic mb-10 text-gray-900">Especialidades Médicas</h2>
+            
+            <div class="flex flex-wrap justify-center gap-2 mb-10">
+                <button onclick="switchTab('facial', this)" class="service-tab active px-8 py-2.5 rounded-full text-[9px] font-bold uppercase tracking-widest border border-gray-100 bg-white transition-all shadow-sm">Facial</button>
+                <button onclick="switchTab('capilar', this)" class="service-tab px-8 py-2.5 rounded-full text-[9px] font-bold uppercase tracking-widest border border-gray-100 bg-white transition-all shadow-sm">Capilar</button>
+                <button onclick="switchTab('corporal', this)" class="service-tab px-8 py-2.5 rounded-full text-[9px] font-bold uppercase tracking-widest border border-gray-100 bg-white transition-all shadow-sm">Corporal</button>
+                <button onclick="switchTab('integral', this)" class="service-tab px-8 py-2.5 rounded-full text-[9px] font-bold uppercase tracking-widest border border-gray-100 bg-white transition-all shadow-sm">Medicina Integral</button>
             </div>
         </div>
-        <div id="service-grid" class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        <div id="service-grid" class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
     </section>
 
     <!-- Resultados -->
-    <section id="resultados" class="py-24 bg-[#fcfaf8] px-6 text-center">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-4xl mb-16 font-serif">Resultados que hablan</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&q=80&w=400" class="rounded-2xl aspect-square object-cover shadow-sm" alt="Resultado">
-                <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&q=80&w=400" class="rounded-2xl aspect-square object-cover shadow-sm" alt="Facial">
-                <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&q=80&w=400" class="rounded-2xl aspect-square object-cover shadow-sm" alt="Skin">
-                <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&q=80&w=400" class="rounded-2xl aspect-square object-cover shadow-sm" alt="Paciente">
+    <section id="resultados" class="py-20 bg-white px-6 text-center border-t border-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl mb-12 font-serif italic text-gray-900">Galería de Resultados</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&q=80&w=400" class="rounded-[40px] aspect-[3/4] object-cover shadow-lg hover:scale-105 transition-all duration-500" alt="Resultado">
+                <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&q=80&w=400" class="rounded-[40px] aspect-[3/4] object-cover shadow-lg hover:scale-105 transition-all duration-500" alt="Resultado">
+                <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&q=80&w=400" class="rounded-[40px] aspect-[3/4] object-cover shadow-lg hover:scale-105 transition-all duration-500" alt="Resultado">
+                <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&q=80&w=400" class="rounded-[40px] aspect-[3/4] object-cover shadow-lg hover:scale-105 transition-all duration-500" alt="Resultado">
             </div>
-        </div>
-    </section>
-
-    <!-- Proceso -->
-    <section id="proceso" class="py-24 bg-white px-6">
-        <div class="max-w-7xl mx-auto text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-serif italic">Tu proceso, paso a paso</h2>
-        </div>
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div class="relative pt-4"><span class="text-8xl font-serif text-gray-50 absolute -top-8 -left-4">01</span><h4 class="text-xl mb-3 font-semibold relative">Consulta</h4><p class="text-sm text-gray-500 font-light">Conversamos sobre tu historia clínica y objetivos.</p></div>
-            <div class="relative pt-4"><span class="text-8xl font-serif text-gray-50 absolute -top-8 -left-4">02</span><h4 class="text-xl mb-3 font-semibold relative">Diagnóstico</h4><p class="text-sm text-gray-500 font-light">Evaluamos tu salud con análisis avanzados.</p></div>
-            <div class="relative pt-4"><span class="text-8xl font-serif text-gray-50 absolute -top-8 -left-4">03</span><h4 class="text-xl mb-3 font-semibold relative">Plan</h4><p class="text-sm text-gray-500 font-light">Diseñamos un protocolo único para vos.</p></div>
-            <div class="relative pt-4"><span class="text-8xl font-serif text-gray-50 absolute -top-8 -left-4">04</span><h4 class="text-xl mb-3 font-semibold relative">Seguimiento</h4><p class="text-sm text-gray-500 font-light">Te acompañamos en cada etapa para resultados naturales.</p></div>
         </div>
     </section>
 
     <!-- FAQ -->
-    <section id="faq" class="py-24 bg-[#fcfaf8] px-6">
+    <section id="faq" class="py-20 bg-[#fcfaf8] px-6">
         <div class="max-w-3xl mx-auto text-center">
-            <h2 class="text-4xl mb-12 font-serif italic">Todo lo que querías saber</h2>
+            <h2 class="text-3xl mb-10 font-serif italic">Preguntas Frecuentes</h2>
             <div class="space-y-4 text-left">
-                <details class="faq-item group bg-white rounded-2xl border border-gray-100">
-                    <summary class="flex justify-between items-center p-6 cursor-pointer list-none font-medium">¿Las sesiones duelen? <i class="fas fa-plus text-xs text-gray-400"></i></summary>
-                    <p class="px-6 pb-6 text-sm text-gray-500">Nuestros tratamientos son mínimamente invasivos y usamos técnicas para tu máximo confort.</p>
+                <details class="faq-item group bg-white rounded-3xl border border-gray-100">
+                    <summary class="flex justify-between items-center p-8 cursor-pointer list-none font-medium text-sm">
+                        ¿Cómo funcionan las consultas ortomoleculares? <i class="fas fa-plus text-[10px] text-accent transition-transform"></i>
+                    </summary>
+                    <p class="px-8 pb-8 text-xs text-gray-500 leading-relaxed">Se basan en un análisis de sangre exhaustivo para suplementar exactamente lo que el organismo necesita, optimizando la vitalidad.</p>
                 </details>
-                <details class="faq-item group bg-white rounded-2xl border border-gray-100">
-                    <summary class="flex justify-between items-center p-6 cursor-pointer list-none font-medium">¿Cuánto duran los resultados? <i class="fas fa-plus text-xs text-gray-400"></i></summary>
-                    <p class="px-6 pb-6 text-sm text-gray-500">Depende del tratamiento, pero la mayoría tiene una durabilidad de varios meses.</p>
+                <details class="faq-item group bg-white rounded-3xl border border-gray-100">
+                    <summary class="flex justify-between items-center p-8 cursor-pointer list-none font-medium text-sm">
+                        ¿La depilación Soprano Ice requiere cuidados previos? <i class="fas fa-plus text-[10px] text-accent transition-transform"></i>
+                    </summary>
+                    <p class="px-8 pb-8 text-xs text-gray-500 leading-relaxed">Es importante no depilarse con cera un mes antes y rasurarse el día previo a la sesión para que el láser trabaje sobre la raíz del pelo.</p>
                 </details>
             </div>
         </div>
     </section>
 
-    <!-- Footer / Indice Detallado -->
-    <footer class="bg-white py-20 px-6 border-t border-gray-100">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 text-left">
+    <!-- Cierre Taupe -->
+    <section class="py-24 bg-accent text-white text-center px-6">
+        <div class="max-w-4xl mx-auto flex flex-col items-center gap-10">
+            <h2 class="text-5xl md:text-6xl leading-tight font-serif italic text-white">Empezá tu camino hacia el bienestar</h2>
+            <p class="text-white/80 font-light max-w-2xl leading-relaxed text-lg">Reserva tu primera consulta y descubrí cómo la medicina integral puede transformar tu salud y belleza.</p>
+            <div class="pt-4">
+                <a href="https://wa.me/5491139551237" target="_blank" class="bg-white text-accent px-12 py-5 rounded-full text-xs font-bold tracking-[0.2em] shadow-2xl hover:scale-105 transition-all">RESERVAR TURNO POR WHATSAPP</a>
+            </div>
+            <p class="text-[10px] uppercase tracking-[0.3em] text-white/50 font-bold uppercase tracking-widest">ATENCIÓN PERSONALIZADA Y RESPUESTAS EN MENOS DE 24 HS HÁBILES.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white py-20 px-6 border-t border-gray-100 text-[11px] text-gray-400">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-16 text-left">
             <div>
-                <span class="text-xl font-serif font-bold block mb-4">Dra. Florencia Chamorro</span>
-                <p class="text-sm text-gray-400 font-light">Medicina integral y estética en CABA. Matrícula Nacional vigente.</p>
+                <span class="text-xl font-serif font-bold block mb-4 text-black italic">Dra. Florencia Chamorro</span>
+                <p class="leading-relaxed">Medicina integral y estética personalizada en Buenos Aires. Villa Luro, CABA.</p>
             </div>
             <div>
-                <h5 class="text-xs font-bold uppercase tracking-widest mb-6">Navegación</h5>
-                <ul class="text-sm text-gray-500 space-y-4">
-                    <li><a href="#sobre-mi">Sobre mí</a></li>
-                    <li><a href="#servicios">Servicios</a></li>
-                    <li><a href="#resultados">Resultados</a></li>
+                <h5 class="font-bold uppercase tracking-[0.2em] mb-8 text-black border-b border-gray-50 pb-2 w-fit">Secciones</h5>
+                <ul class="space-y-4 italic">
+                    <li><a href="#" class="hover:text-accent">Inicio</a></li>
+                    <li><a href="#servicios" class="hover:text-accent">Tratamientos</a></li>
+                    <li><a href="#sobre-mi" class="hover:text-accent">Labor Médica</a></li>
                 </ul>
             </div>
             <div>
-                <h5 class="text-xs font-bold uppercase tracking-widest mb-6">Contacto</h5>
-                <ul class="text-sm text-gray-500 space-y-4">
-                    <li><i class="fas fa-map-marker-alt mr-2"></i> Villa Luro, CABA</li>
-                    <li><i class="fab fa-instagram mr-2"></i> @draflorenciachamorro</li>
+                <h5 class="font-bold uppercase tracking-[0.2em] mb-8 text-black border-b border-gray-50 pb-2 w-fit">Contacto</h5>
+                <ul class="space-y-4">
+                    <li><i class="fas fa-map-marker-alt mr-3 text-accent/30"></i> Villa Luro, CABA</li>
+                    <li><i class="fab fa-whatsapp mr-3 text-accent/30"></i> +54 9 11 3955 1237</li>
+                    <li><i class="fab fa-instagram mr-3 text-accent/30"></i> @draflorenciachamorro</li>
                 </ul>
             </div>
             <div>
-                <h5 class="text-xs font-bold uppercase tracking-widest mb-6">WhatsApp</h5>
-                <a href="https://wa.me/5491139551237" class="btn-dark px-6 py-3 rounded-full text-xs font-bold inline-block">PEDIR TURNO</a>
+                <h5 class="font-bold uppercase tracking-[0.2em] mb-8 text-black border-b border-gray-50 pb-2 w-fit">Horarios</h5>
+                <p>Lunes a Viernes<br>09:00 — 19:00 hs<br><br><span class="pill-badge border-accent text-accent font-bold">Turnos Programados</span></p>
             </div>
         </div>
     </footer>
 
-    <!-- Modal -->
-    <div id="serviceModal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
-        <div class="bg-white w-full max-w-lg rounded-[40px] p-10 relative">
-            <button onclick="closeModal()" class="absolute top-6 right-6 text-gray-300"><i class="fas fa-times"></i></button>
-            <div id="modalIcon" class="text-4xl mb-6 text-gray-200"></div>
-            <h3 id="modalTitle" class="text-3xl font-serif mb-4"></h3>
-            <p id="modalDescription" class="text-gray-500 font-light leading-relaxed mb-8"></p>
-            <a id="modalWhatsAppBtn" href="#" target="_blank" class="btn-dark block w-full py-4 rounded-full text-center text-sm font-bold">CONSULTAR POR WHATSAPP</a>
+    <!-- Modal Detallado -->
+    <div id="serviceModal" class="fixed inset-0 z-[100] items-center justify-center p-4 bg-black/70 backdrop-blur-md">
+        <div class="bg-white w-full max-w-xl rounded-[40px] shadow-2xl relative flex flex-col overflow-hidden max-h-[85vh]">
+            <button onclick="closeModal()" class="absolute top-8 right-8 text-gray-300 hover:text-black z-10 transition-colors"><i class="fas fa-times text-xl"></i></button>
+            <div class="p-10 md:p-12 w-full overflow-y-auto custom-scrollbar text-left">
+                <div id="modalIcon" class="w-16 h-16 bg-gray-50 rounded-[20px] flex items-center justify-center text-3xl text-accent/30 mb-8"></div>
+                <div class="flex flex-wrap items-center gap-4 mb-6">
+                    <h3 id="modalTitle" class="text-3xl font-serif italic text-gray-900 leading-tight"></h3>
+                    <span id="modalDuration" class="px-4 py-1 bg-[#fcfaf8] border border-gray-100 text-[8px] font-bold uppercase tracking-widest rounded-full text-accent"></span>
+                </div>
+                <p id="modalDescription" class="text-gray-500 font-light leading-relaxed mb-10 text-base border-l-4 border-accent/20 pl-6 italic"></p>
+                <div class="mb-10">
+                    <h4 class="text-[10px] font-bold uppercase tracking-[0.3em] mb-6 text-black border-b border-gray-50 pb-2 w-fit italic">Abordaje Clínico</h4>
+                    <ul id="modalBenefits" class="grid grid-cols-1 gap-y-4"></ul>
+                </div>
+                <div class="pt-8 border-t border-gray-100 flex flex-col sm:flex-row items-center gap-8">
+                    <a id="modalWhatsAppBtn" href="#" target="_blank" class="bg-accent text-white w-full sm:w-auto px-12 py-5 rounded-full text-center text-[9px] font-bold tracking-[0.3em] shadow-xl hover:brightness-95 transition-all uppercase">Consultar</a>
+                    <div class="text-left"><p class="text-[9px] text-gray-400 font-light">Evaluación profesional individualizada.</p></div>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
         const services = {
             facial: [
-                { title: "Toxina Botulínica", desc: "Suaviza arrugas y trata bruxismo mandibular y sudoración excesiva (hiperhidrosis).", icon: "fa-syringe" },
-                { title: "HIFU 7D", desc: "Lifting sin cirugía con ultrasonido focalizado para tensar y generar colágeno profundo.", icon: "fa-bolt" },
-                { title: "Fraxface", desc: "Radiofrecuencia fraccionada ideal para manchas, poros abiertos y cicatrices.", icon: "fa-magic" },
-                { title: "Limpieza Profunda", desc: "Protocolo médico de higiene con extracciones y nutrición celular.", icon: "fa-water" }
+                { 
+                    title: "Toxina Botulínica", 
+                    desc: "La técnica de oro para armonización y tratamiento terapéutico muscular.", 
+                    longDesc: "Procedimiento médico que relaja la musculatura facial para atenuar arrugas. Se emplea con éxito en el alivio del bruxismo y la sudoración excesiva.", 
+                    benefits: ["Elimina líneas de expresión", "Alivio del Bruxismo", "Control de Hiperhidrosis", "Resultados naturales"],
+                    duration: "30 min",
+                    icon: "fa-syringe" 
+                },
+                { 
+                    title: "Ácido Hialurónico", 
+                    desc: "Reposición de volúmenes faciales y definición biológica.", 
+                    longDesc: "Uso de rellenos biocompatibles de alta gama para proyectar volúmenes perdidos, hidratar labios y realizar armonización facial equilibrada.", 
+                    benefits: ["Relleno de labios", "Definición mandibular", "Reposición de pómulos", "Eliminación de ojeras"],
+                    duration: "45 min",
+                    icon: "fa-droplet" 
+                },
+                { 
+                    title: "Bioestimuladores", 
+                    desc: "Activación de la producción de colágeno natural para firmeza.", 
+                    longDesc: "Inyectables que estimulan los fibroblastos para la producción de colágeno propio, devolviendo estructura y tensión a los tejidos.", 
+                    benefits: ["Firmeza prolongada", "Efecto tensor natural", "Mejora calidad dérmica", "Tratamiento cara y cuello"],
+                    duration: "40 min",
+                    icon: "fa-sparkles" 
+                },
+                { 
+                    title: "Peeling Médico", 
+                    desc: "Renovación celular profunda y tratamiento de imperfecciones.", 
+                    longDesc: "Aplicación de agentes químicos médicos para renovar la superficie cutánea, tratando manchas, poros dilatados y textura irregular.", 
+                    benefits: ["Unificación del tono", "Cierre de poros", "Tratamiento de acné", "Luminosidad celular"],
+                    duration: "40 min",
+                    icon: "fa-face-smile" 
+                }
             ],
-            capilar: [{ title: "Mesoterapia Capilar", desc: "Frená la caída y fortalecé tu cabello.", icon: "fa-pills" }],
-            corporal: [{ title: "Mesoterapia Corporal", desc: "Reducción de adiposidad y celulitis.", icon: "fa-drumstick-bite" }],
-            integral: [{ title: "Medicina Funcional", desc: "Encontrá la causa raíz biológica de tus síntomas.", icon: "fa-leaf" }]
+            capilar: [
+                { 
+                    title: "Tratamiento Alopecia", 
+                    desc: "Protocolo médico integral para la recuperación capilar.", 
+                    longDesc: "Abordaje que combina diagnóstico clínico y terapias específicas para frenar la caída activa y recuperar folículos debilitados.", 
+                    benefits: ["Freno de caída activa", "Aumento de densidad", "Diagnóstico profesional", "Recuperación folicular"],
+                    duration: "40 min",
+                    icon: "fa-user-nurse" 
+                },
+                { 
+                    title: "Mesoterapia Capilar", 
+                    desc: "Administración directa de nutrientes y activos foliculares.", 
+                    longDesc: "Microinyecciones de vitaminas y aminoácidos directamente en el cuero cabelludo para fortalecer el cabello desde la raíz.", 
+                    benefits: ["Nutrición directa", "Fortalecimiento folicular", "Prevención de caída", "Mejora del brillo"],
+                    duration: "20 min",
+                    icon: "fa-pills" 
+                }
+            ],
+            corporal: [
+                { 
+                    title: "Depilación Soprano Ice", 
+                    desc: "Tecnología láser segura e indolora para todo tipo de piel.", 
+                    longDesc: "Sistema de depilación definitiva con enfriamiento constante que permite sesiones cómodas y seguras en cualquier época del año.", 
+                    benefits: ["Prácticamente indoloro", "Seguro en piel bronceada", "Resultados duraderos", "Eficaz en todo el cuerpo"],
+                    duration: "20-60 min",
+                    icon: "fa-bolt" 
+                },
+                { 
+                    title: "Tratamiento Reductor", 
+                    desc: "Modelación corporal y reducción de adiposidad focalizada.", 
+                    longDesc: "Protocolo médico diseñado para eliminar depósitos de grasa mediante técnicas no invasivas y seguras bajo supervisión clínica.", 
+                    benefits: ["Reducción de medidas", "Modelación del contorno", "Sin cirugía", "Resultados progresivos"],
+                    duration: "60 min",
+                    icon: "fa-weight-scale" 
+                }
+            ],
+            integral: [
+                { 
+                    title: "Medicina Funcional", 
+                    desc: "Búsqueda del equilibrio biológico desde la raíz metabólica.", 
+                    longDesc: "Evaluación clínica de bioquímica y hábitos para proponer soluciones que devuelvan la vitalidad integral al organismo.", 
+                    benefits: ["Equilibrio hormonal", "Optimización de energía", "Prevención biológica", "Plan nutricional a medida"],
+                    duration: "60 min",
+                    icon: "fa-leaf" 
+                },
+                { 
+                    title: "Sueroterapia", 
+                    desc: "Administración intravenosa de nutrientes de alta biodisponibilidad.", 
+                    longDesc: "Infusión directa de vitaminas y minerales para una revitalización inmediata del sistema inmune y celular.", 
+                    benefits: ["Vitalidad inmediata", "Máxima absorción", "Fortalecimiento inmune", "Recuperación celular"],
+                    duration: "45 min",
+                    icon: "fa-vial-circle-check" 
+                }
+            ]
         };
 
         function switchTab(tabId, btn) {
-            document.querySelectorAll('.service-tab').forEach(b => b.classList.remove('active'));
-            if(btn) btn.classList.add('active');
+            document.querySelectorAll('.service-tab').forEach(b => {
+                b.classList.remove('active', 'text-white');
+                b.classList.add('text-gray-400', 'bg-white');
+            });
+            if(btn) {
+                btn.classList.add('active');
+                btn.classList.remove('text-gray-400', 'bg-white');
+            }
+
             const grid = document.getElementById('service-grid');
             grid.innerHTML = '';
-            services[tabId].forEach(s => {
-                grid.innerHTML += `
-                    <div class="bg-[#fcfaf8] p-10 rounded-[32px] border border-gray-100 flex flex-col justify-between text-left shadow-sm">
-                        <div>
-                            <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-6 text-gray-300"><i class="fas ${s.icon}"></i></div>
-                            <h3 class="text-2xl font-serif mb-4">${s.title}</h3>
-                            <p class="text-sm text-gray-500 font-light mb-8">${s.desc}</p>
+            
+            services[tabId].forEach((s, index) => {
+                const card = document.createElement('div');
+                card.className = "bg-[#fcfaf8] p-10 rounded-[35px] border border-gray-50 flex flex-col justify-between text-left shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1 group relative overflow-hidden";
+                card.innerHTML = `
+                    <div class="absolute top-0 right-0 p-8 text-[8px] font-bold text-accent/30 uppercase tracking-widest">+ Info</div>
+                    <div>
+                        <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center mb-8 text-accent/40 shadow-sm group-hover:bg-accent group-hover:text-white transition-all duration-500">
+                            <i class="fas ${s.icon} text-lg"></i>
                         </div>
-                        <button onclick="openModal('${s.title}', '${s.desc}', '${s.icon}')" class="text-xs font-bold border-b border-black pb-1 w-fit">MÁS INFO</button>
-                    </div>`;
+                        <h3 class="text-xl font-serif mb-4 italic text-gray-900 leading-tight">${s.title}</h3>
+                        <p class="text-[13px] text-gray-400 font-light leading-relaxed mb-10">${s.desc}</p>
+                    </div>
+                    <button onclick="openModal('${tabId}', ${index})" class="text-[9px] font-bold uppercase tracking-[0.2em] border-b border-black pb-1 w-fit hover:text-accent hover:border-accent transition-all">
+                        MÁS INFORMACIÓN
+                    </button>`;
+                grid.appendChild(card);
             });
         }
 
-        function openModal(title, desc, icon) {
-            document.getElementById('modalTitle').innerText = title;
-            document.getElementById('modalDescription').innerText = desc;
-            document.getElementById('modalIcon').innerHTML = `<i class="fas ${icon}"></i>`;
-            document.getElementById('modalWhatsAppBtn').href = `https://wa.me/5491139551237?text=Hola Dra. Florencia, quiero consultar por ${title}`;
-            document.getElementById('serviceModal').classList.remove('hidden');
+        function openModal(category, index) {
+            const s = services[category][index];
+            document.getElementById('modalTitle').innerText = s.title;
+            document.getElementById('modalDescription').innerText = s.longDesc;
+            document.getElementById('modalIcon').innerHTML = `<i class="fas ${s.icon} text-accent"></i>`;
+            document.getElementById('modalDuration').innerText = `DURACIÓN ESTIMADA: ${s.duration}`;
+            const list = document.getElementById('modalBenefits');
+            list.innerHTML = '';
+            s.benefits.forEach(b => {
+                list.innerHTML += `<li class="flex items-center gap-3 text-xs text-gray-500 font-light"><i class="fas fa-check text-accent text-[9px]"></i> ${b}</li>`;
+            });
+            const msg = encodeURIComponent(`Hola Dra. Florencia, solicito información médica sobre el tratamiento de: ${s.title}`);
+            document.getElementById('modalWhatsAppBtn').href = `https://wa.me/5491139551237?text=${msg}`;
+            const modal = document.getElementById('serviceModal');
+            modal.style.display = 'flex';
+            setTimeout(() => modal.classList.add('active'), 10);
+            document.body.style.overflow = 'hidden';
         }
 
-        function closeModal() { document.getElementById('serviceModal').classList.add('hidden'); }
+        function closeModal() {
+            const modal = document.getElementById('serviceModal');
+            modal.classList.remove('active');
+            setTimeout(() => { modal.style.display = 'none'; document.body.style.overflow = 'auto'; }, 300);
+        }
+
+        window.onclick = function(e) { if(e.target == document.getElementById('serviceModal')) closeModal(); }
         window.onload = () => switchTab('facial', document.querySelector('.service-tab'));
     </script>
 </body>
